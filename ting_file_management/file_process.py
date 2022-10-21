@@ -27,7 +27,17 @@ def remove(instance):
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    try:
+        arquivo = instance.search(position)
+        fileProcess = txt_importer(arquivo)
+        obj = {
+          "nome_do_arquivo": arquivo,
+          "qtd_linhas": len(fileProcess),
+          "linhas_do_arquivo": fileProcess
+        }
+        sys.stdout.write(str(obj))
+    except IndexError:
+        sys.stderr.write("Posição inválida\n")
 
 
 # print(process('ting_file_management/teste.txt', Queue()))
