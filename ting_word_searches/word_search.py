@@ -27,4 +27,23 @@ def exists_word(word, instance):
 # print(exists_word('pedro', Queue()))
 
 def search_by_word(word, instance):
-    """Aqui irá sua implementação"""
+    firstword = word.lower()
+    lista = []
+    fila = instance._data
+    listaocorrencia = []
+    for path_file in fila:
+        fileProcess = txt_importer(path_file)
+        for index, frase in enumerate(fileProcess):
+            if(firstword in frase.lower()):
+                listaocorrencia.append({
+                    "linha": index + 1,
+                    "conteudo": frase
+                    })
+        obj = {
+            "palavra": firstword,
+            "arquivo": path_file,
+            "ocorrencias": listaocorrencia
+        }
+        if(len(listaocorrencia) != 0):
+            lista.append(obj)
+    return lista
